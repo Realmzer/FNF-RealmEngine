@@ -34,9 +34,13 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+	
+	public static var realmEngineVer:String = 'Devlopment';
+
 
 	override function create()
 	{
+
 		#if discord_rpc
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -89,22 +93,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.enabled = false; // disable for intro
 		menuItems.createItem('story mode', function() startExitState(new StoryMenuState()));
 		menuItems.createItem('freeplay', function() startExitState(new FreeplayState()));
-		// addMenuItem('options', function () startExitState(new OptionMenu()));
-		#if CAN_OPEN_LINKS
-		var hasPopupBlocker = #if web true #else false #end;
-
-		if (VideoState.seenVideo)
-			menuItems.createItem('kickstarter', selectDonate, hasPopupBlocker);
-		else
-			menuItems.createItem('donate', selectDonate, hasPopupBlocker);
-		#end
 		menuItems.createItem('options', function() startExitState(new OptionsState()));
-		// #if newgrounds
-		// 	if (NGio.isLoggedIn)
-		// 		menuItems.createItem("logout", selectLogout);
-		// 	else
-		// 		menuItems.createItem("login", selectLogin);
-		// #end
 
 		// center vertically
 		var spacing = 160;
@@ -120,12 +109,16 @@ class MainMenuState extends MusicBeatState
 		FlxG.camera.follow(camFollow, null, 0.06);
 		// FlxG.camera.setScrollBounds(bg.x, bg.x + bg.width, bg.y, bg.y + bg.height * 1.2);
 
+        var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "Realm Engine" + realmEngineVer, 12);
+		versionShit.scrollFactor.set();
+		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(versionShit);
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		versionShit.text += '(Newgrounds exclusive preview)';
+		versionShit.text += 'Realm Engine';
 
 		// NG.core.calls.event.logEvent('swag').send();
 
