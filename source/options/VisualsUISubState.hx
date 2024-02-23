@@ -152,6 +152,14 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool');
 		addOption(option);
 
+		#if windows
+		var option:Option = new Option('Dark Mode Window',
+		"If unchecked, the window will be in light mode instead of dark mode. \n Please note that this only works on windows.",
+		'darkMode',
+		'bool');
+		addOption(option);
+        #end
+
 		super();
 		add(notes);
 	}
@@ -183,6 +191,18 @@ class VisualsUISubState extends BaseOptionsMenu
 
 		changedMusic = true;
 	}
+
+	function darkMode()
+		{
+			if(ClientPrefs.data.darkMode)
+			#if windows
+			CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
+			 #end
+			 else 
+		#if windows
+		CppAPI.lightMode();   // The code that enables light mode. ONLY WORKS ON WINDOWS
+		 #end
+		}
 
 	function onChangeNoteSkin()
 	{
