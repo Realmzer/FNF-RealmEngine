@@ -537,6 +537,12 @@ class TitleState extends MusicBeatState
 				gfDance.animation.play('danceRight');
 			else
 				gfDance.animation.play('danceLeft');
+
+			FlxG.camera.zoom = 1.04;
+
+			FlxTween.tween(FlxG.camera, {zoom: 1}, Conductor.crochet / 1300, {
+				ease: FlxEase.circOut
+			});
 		}
 
 		if(!closedState) {
