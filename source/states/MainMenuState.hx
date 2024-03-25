@@ -87,7 +87,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(X);
 		}
 
-		var realmver:FlxText = new FlxText(12, FlxG.height - 44, 0, "Realm Engine v" + realmEngineVersion, 12);
+		var realmver:FlxText = new FlxText(12, FlxG.height - 64, 0, "Realm Engine v" + realmEngineVersion, 12);
 		realmver.scrollFactor.set();
 		realmver.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(realmver);
