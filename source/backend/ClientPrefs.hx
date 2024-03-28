@@ -78,6 +78,7 @@ import states.TitleState;
 	public var discordRPC:Bool = true;
 	public var nomoreLag:Bool = true;
 	public var strumstatic:Bool = false;
+	public var hidedecharacter:Bool = false;
 }
 
 class ClientPrefs {
