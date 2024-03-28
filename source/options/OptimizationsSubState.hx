@@ -10,14 +10,18 @@ class OptimizationsSubState extends BaseOptionsMenu
 	{
 		title = 'Optimization';
 		rpcTitle = 'Optimizations Settings Menu'; //for Discord Rich Presence
-
-		// for note skins
 		
-		var option:Option = new Option('Further less Botplay Lag',
+		var option:Option = new Option('Further less Botplay Lag', //No more Combos
 			"Disables Notesplashes along side with no combo images",
 			'nomoreLag',
 			'bool');
 		addOption(option);
+		var option:Option = new Option('Static Strums', // No more Strum Animations
+			"Keeps the strums static",
+			'strumstatic',
+			'bool');
+		addOption(option);
+		
 		super();
 	}
 
