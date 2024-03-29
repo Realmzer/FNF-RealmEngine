@@ -51,6 +51,8 @@ import states.stages.objects.*;
 #if LUA_ALLOWED
 import psychlua.*;
 #else
+import psychlua.Hscriptr
+import psychlua.
 import psychlua.LuaUtils;
 import psychlua.HScript;
 #end
@@ -109,6 +111,7 @@ class PlayState extends MusicBeatState
 	#if LUA_ALLOWED
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
 	public var modchartSprites:Map<String, ModchartSprite> = new Map<String, ModchartSprite>();
+//	public var modchartSpritesr:Map<String, ModchartSpriter> = new Map<String, ModchartSpriter>();
 	public var modchartTimers:Map<String, FlxTimer> = new Map<String, FlxTimer>();
 	public var modchartSounds:Map<String, FlxSound> = new Map<String, FlxSound>();
 	public var modchartTexts:Map<String, FlxText> = new Map<String, FlxText>();
@@ -250,7 +253,10 @@ class PlayState extends MusicBeatState
 
 	// Lua shit
 	public static var instance:PlayState;
-	#if LUA_ALLOWED public var luaArray:Array<FunkinLua> = []; #end
+	#if LUA_ALLOWED public var luaArray:Array<FunkinLua> = [];
+	//public var luaArray:Array<OldLua> = []; 
+	#end
+
 
 	#if (LUA_ALLOWED || HSCRIPT_ALLOWED)
 	private var luaDebugGroup:FlxTypedGroup<psychlua.DebugLuaText>;
@@ -415,6 +421,7 @@ class PlayState extends MusicBeatState
 				#if LUA_ALLOWED
 				if(file.toLowerCase().endsWith('.lua'))
 					new FunkinLua(folder + file);
+					//new OldLua(folder + file);
 				#end
 
 				#if HSCRIPT_ALLOWED
@@ -617,6 +624,7 @@ class PlayState extends MusicBeatState
 				#if LUA_ALLOWED
 				if(file.toLowerCase().endsWith('.lua'))
 					new FunkinLua(folder + file);
+				   // new OldLua(folder + file);
 				#end
 
 				#if HSCRIPT_ALLOWED
@@ -790,6 +798,7 @@ class PlayState extends MusicBeatState
 				}
 			}
 			if(doPush) new FunkinLua(luaFile);
+			//if(doPush) new OldLua(luaFile);
 		}
 		#end
 
@@ -825,6 +834,7 @@ class PlayState extends MusicBeatState
 	public function getLuaObject(tag:String, text:Bool=true):FlxSprite {
 		#if LUA_ALLOWED
 		if(modchartSprites.exists(tag)) return modchartSprites.get(tag);
+		//if(modchartSpritesr.exists(tag)) return modchartSpritesr.get(tag);
 		if(text && modchartTexts.exists(tag)) return modchartTexts.get(tag);
 		if(variables.exists(tag)) return variables.get(tag);
 		#end
@@ -3040,6 +3050,7 @@ class PlayState extends MusicBeatState
 		}
 		luaArray = [];
 		FunkinLua.customFunctions.clear();
+	//	OldLua.customFunctions.clear();
 		#end
 
 		#if HSCRIPT_ALLOWED
@@ -3182,6 +3193,7 @@ class PlayState extends MusicBeatState
 				if(script.scriptName == luaToLoad) return false;
 
 			new FunkinLua(luaToLoad);
+		//	new OldLua(luaToLoad);
 			return true;
 		}
 		return false;
@@ -3279,11 +3291,13 @@ class PlayState extends MusicBeatState
 		if(excludeValues == null) excludeValues = [LuaUtils.Function_Continue];
 
 		var arr:Array<FunkinLua> = [];
+	//	var arr2:Array<OldLua> = [];
 		for (script in luaArray)
 		{
 			if(script.closed)
 			{
 				arr.push(script);
+				arr2.push(script);
 				continue;
 			}
 
@@ -3301,6 +3315,7 @@ class PlayState extends MusicBeatState
 				returnVal = myValue;
 
 			if(script.closed) arr.push(script);
+			if(script.closed) arr2.push(script);
 		}
 
 		if(arr.length > 0)
