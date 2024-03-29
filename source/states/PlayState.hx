@@ -3297,7 +3297,7 @@ class PlayState extends MusicBeatState
 			if(script.closed)
 			{
 				arr.push(script);
-				arr2.push(script);
+				//arr2.push(script);
 				continue;
 			}
 
@@ -3315,7 +3315,7 @@ class PlayState extends MusicBeatState
 				returnVal = myValue;
 
 			if(script.closed) arr.push(script);
-			if(script.closed) arr2.push(script);
+			//if(script.closed) arr2.push(script);
 		}
 
 		if(arr.length > 0)
