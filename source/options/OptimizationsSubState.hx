@@ -21,9 +21,9 @@ class OptimizationsSubState extends BaseOptionsMenu
 
 		var option:Option = new Option('Hide Characters', 
 		"Hides the characters for less MEM Usuage",
-		'hidedecharacter',
+		'hideDeCharacter',
 		'bool');
-		addOption(option);
+		//addOption(option);
 
 
 		
