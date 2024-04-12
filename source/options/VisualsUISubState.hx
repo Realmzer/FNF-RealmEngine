@@ -157,7 +157,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		"If unchecked, the window will be in light mode instead of dark mode. \n Please note that this only works on windows.",
 		'darkMode',
 		'bool');
-		addOption(option);
+		//addOption(option);
         #end
 
 		super();
@@ -192,17 +192,21 @@ class VisualsUISubState extends BaseOptionsMenu
 		changedMusic = true;
 	}
 
-	function darkMode()
-		{
-			if(ClientPrefs.data.darkMode)
-			#if windows
-			CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
-			 #end
-			 else 
-		#if windows
-		CppAPI.lightMode();   // The code that enables light mode. ONLY WORKS ON WINDOWS
-		 #end
-		}
+	//function darkMode()
+		//{
+		//	if(ClientPrefs.data.darkMode)
+		//		{
+		//	#if windows
+		//	cpp.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
+			// #end
+			//	}
+		// if(!ClientPrefs.data.darkMode)
+			//	{
+		//#if windows
+		//cpp.CppAPI.lightMode();   // The code that enables light mode. ONLY WORKS ON WINDOWS
+		// #end
+	//	}
+	//}
 
 	function onChangeNoteSkin()
 	{

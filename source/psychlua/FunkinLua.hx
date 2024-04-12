@@ -43,6 +43,13 @@ import flixel.input.gamepad.FlxGamepadInputID;
 
 import haxe.Json;
 
+import cpp*;
+import cpp.CppAPI;
+import cpp.Transparency
+import cpp.Wallpaper;
+import cpp.WindowsData;
+import cpp
+
 class FunkinLua {
 	public var lua:State = null;
 	public var camTarget:FlxCamera;

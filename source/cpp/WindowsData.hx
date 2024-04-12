@@ -1,4 +1,4 @@
-package;
+package cpp;
 
 #if windows
 @:buildXml('

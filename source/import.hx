@@ -43,6 +43,13 @@ import states.LoadingState;
 import flxanimate.*;
 #end
 
+//CPP
+import cpp.CppAPI;
+import cpp.Transparency;
+import cpp.Wallpaper;
+import cpp.WindowsData;
+import cpp.WindowsSystem;
+
 //Flixel
 import flixel.sound.FlxSound;
 import flixel.FlxG;

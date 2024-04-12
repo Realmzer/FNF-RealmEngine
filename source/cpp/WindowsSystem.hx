@@ -1,4 +1,4 @@
-package;
+package cpp;
 
 /*
 Code Has Been Done By Chromasen And Erizur For Dave And Bambi.

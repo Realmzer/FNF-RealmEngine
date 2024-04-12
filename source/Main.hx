@@ -55,7 +55,7 @@ class Main extends Sprite
 	public static function main():Void
 	{
 		#if windows
-		CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
+		cpp.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
 		 #end
 		Lib.current.addChild(new Main());
 	}
@@ -114,7 +114,7 @@ class Main extends Sprite
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
 		#if windows
-		CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
+		cpp.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
 		 #end
 
 
