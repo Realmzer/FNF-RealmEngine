@@ -43,12 +43,10 @@ import flixel.input.gamepad.FlxGamepadInputID;
 
 import haxe.Json;
 
-import cpp*;
 import cpp.CppAPI;
-import cpp.Transparency
+import cpp.Transparency;
 import cpp.Wallpaper;
 import cpp.WindowsData;
-import cpp
 
 class FunkinLua {
 	public var lua:State = null;
@@ -1461,6 +1459,18 @@ class FunkinLua {
 				}
 			}
 		});
+
+
+		Lua_helper.add_callback(lua, "printd", LuaUtils.printd);
+
+		Lua_helper.add_callback(lua, "getSongInfo", LuaUtils.getSongInfo);
+
+		Lua_helper.add_callback(lua, "getRatingShit", LuaUtils.getRatingShit);
+
+		Lua_helper.add_callback(lua, "showErrorWindow", LuaUtils.showErrorWindow);
+
+		Lua_helper.add_callback(lua, "pauseAudio", LuaUtils.pauseAudio);
+
 		#if FLX_PITCH
 		Lua_helper.add_callback(lua, "getSoundPitch", function(tag:String) {
 			if(tag != null && tag.length > 0 && game.modchartSounds.exists(tag)) {
