@@ -1458,8 +1458,7 @@ class FunkinLua {
 					if(wasResumed) theSound.play();
 				}
 			}
-		});
-
+		}); 
 
 		Lua_helper.add_callback(lua, "printd", LuaUtils.printd);
 

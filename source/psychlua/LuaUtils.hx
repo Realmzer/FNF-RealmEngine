@@ -8,6 +8,11 @@ import Type.ValueType;
 
 import substates.GameOverSubstate;
 
+import cpp.CppAPI;
+import cpp.Transparency;
+import cpp.Wallpaper;
+import cpp.WindowsData;
+
 typedef LuaTweenOptions = {
 	type:FlxTweenType,
 	startDelay:Float,

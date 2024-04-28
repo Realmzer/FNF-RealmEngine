@@ -272,6 +272,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		trace('Song Loaded.');
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
 
