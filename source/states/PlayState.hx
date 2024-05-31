@@ -274,7 +274,8 @@ class PlayState extends MusicBeatState
 	{
 		trace('Song Loaded.');
 		//trace('Playback Rate: ' + playbackRate);
-		Paths.clearStoredMemory();
+		inline cpp.vm.Gc.enable(ClientPrefs.data.enableGC); //From JSE
+		inline Paths.clearStoredMemory();
 
 		startCallback = startCountdown;
 		endCallback = endSong;
@@ -517,7 +518,7 @@ class PlayState extends MusicBeatState
 			timeTxt.y += 3;
 		}
 
-		if(!ClientPrefs.data.nomoreLag){
+		if(!ClientPrefs.data.nosplashes){
 		var splash:NoteSplash = new NoteSplash(100, 100);
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
@@ -528,7 +529,7 @@ class PlayState extends MusicBeatState
 
 		generateSong(SONG.song);
 
-		if(!ClientPrefs.data.nomoreLag){
+		if(!ClientPrefs.data.nosplashes){
 		noteGroup.add(grpNoteSplashes);
 		}
 
@@ -2462,7 +2463,8 @@ class PlayState extends MusicBeatState
 
 	private function popUpScore(note:Note = null):Void
 	{
-		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
+		final noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset) / playbackRate;
+		final wife:Float = EtternaFunctions.wife3(noteDiff, Conductor.timeScale);
 		vocals.volume = 1;
 
 		if (!ClientPrefs.data.comboStacking && comboGroup.members.length > 0) {
@@ -2508,7 +2510,7 @@ class PlayState extends MusicBeatState
 			if (PlayState.isPixelStage) uiSuffix = '-pixel';
 			antialias = !isPixelStage;
 		}
-        if(!cpuControlled) {
+        if(!ClientPrefs.data.noratings) {
 		rating.loadGraphic(Paths.image(uiPrefix + daRating.image + uiSuffix));
 		rating.screenCenter();
 		rating.x = placement - 40;
@@ -3408,9 +3410,13 @@ class PlayState extends MusicBeatState
 	function strumPlayAnim(isDad:Bool, id:Int, time:Float) {
 		var spr:StrumNote = null;
 		if(isDad) {
+			if(!ClientPrefs.data.oppstrumstatic){
 			spr = opponentStrums.members[id];
+			}
 		} else {
+			if(!ClientPrefs.data.playerstrumstatic){		
 			spr = playerStrums.members[id];
+		}
 		}
 
 		if(spr != null) {

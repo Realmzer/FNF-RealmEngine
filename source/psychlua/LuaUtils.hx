@@ -8,10 +8,10 @@ import Type.ValueType;
 
 import substates.GameOverSubstate;
 
-import cpp.CppAPI;
-import cpp.Transparency;
-import cpp.Wallpaper;
-import cpp.WindowsData;
+import cpputils.CppAPI;
+import cpputils.Transparency;
+import cpputils.Wallpaper;
+import cpputils.WindowsData;
 
 typedef LuaTweenOptions = {
 	type:FlxTweenType,
@@ -199,6 +199,18 @@ class LuaUtils
 
 	public static function getSongInfo(curSong:String):Void {
 		trace(StringTools.trim(PlayState.SONG.song) + " - " + StringTools.trim(Difficulty.getString()) + ", Duration: " + FlxG.sound.music.length);
+	}
+
+	public static function deleteFile(path:String):Void {
+		FileSystem.deleteFile(path);
+	}
+
+	public static function openPage(url:String):Void {
+		#if linux
+		Sys.command('/usr/bin/xdg-open', [url]);
+		#else
+		FlxG.openURL(url);
+		#end
 	}
 
 	public static function getRatingShit(curSong:String):Void {

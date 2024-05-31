@@ -84,28 +84,28 @@ class StrumNote extends FlxSprite
 			{
 				case 0:
 					animation.add('static', [0]);
-					if(!ClientPrefs.data.strumstatic){
+				//	if(!ClientPrefs.data.strumstatic){
 					animation.add('pressed', [4, 8], 12, false);
 					animation.add('confirm', [12, 16], 24, false);
-					}
+				//	}
 				case 1:
 					animation.add('static', [1]);
-					if(!ClientPrefs.data.strumstatic){
+					//if(!ClientPrefs.data.strumstatic){
 					animation.add('pressed', [5, 9], 12, false);
 					animation.add('confirm', [13, 17], 24, false);
-					}
+					//}
 				case 2:
 					animation.add('static', [2]);
-					if(!ClientPrefs.data.strumstatic){
+				//	if(!ClientPrefs.data.strumstatic){
 					animation.add('pressed', [6, 10], 12, false);
 					animation.add('confirm', [14, 18], 12, false);
-					}
+				//	}
 				case 3:
 					animation.add('static', [3]);
-					if(!ClientPrefs.data.strumstatic){
+					//if(!ClientPrefs.data.strumstatic){
 					animation.add('pressed', [7, 11], 12, false);
 					animation.add('confirm', [15, 19], 24, false);
-					}
+					//}
 			}
 		}
 		else
@@ -123,28 +123,28 @@ class StrumNote extends FlxSprite
 			{
 				case 0:
 					animation.addByPrefix('static', 'arrowLEFT');
-					if(!ClientPrefs.data.strumstatic){
+					//if(!ClientPrefs.data.strumstatic){
 					animation.addByPrefix('pressed', 'left press', 24, false);
 					animation.addByPrefix('confirm', 'left confirm', 24, false);
-					}
+				//	}
 				case 1:
 					animation.addByPrefix('static', 'arrowDOWN');
-					if(!ClientPrefs.data.strumstatic){
+					//if(!ClientPrefs.data.strumstatic){
 					animation.addByPrefix('pressed', 'down press', 24, false);
 					animation.addByPrefix('confirm', 'down confirm', 24, false);
-					}
+				//	}
 				case 2:
 					animation.addByPrefix('static', 'arrowUP');
-					if(!ClientPrefs.data.strumstatic){
+				//	if(!ClientPrefs.data.strumstatic){
 					animation.addByPrefix('pressed', 'up press', 24, false);
 					animation.addByPrefix('confirm', 'up confirm', 24, false);
-					}
+				//	}
 				case 3:
 					animation.addByPrefix('static', 'arrowRIGHT');
-					if(!ClientPrefs.data.strumstatic){
+					//if(!ClientPrefs.data.strumstatic){
 					animation.addByPrefix('pressed', 'right press', 24, false);
 					animation.addByPrefix('confirm', 'right confirm', 24, false);
-					}
+				//	}
 			}
 		}
 		updateHitbox();

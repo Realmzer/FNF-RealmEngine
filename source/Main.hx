@@ -29,6 +29,10 @@ import haxe.CallStack;
 import haxe.io.Path;
 #end
 
+#if desktop
+import cpp.vm.Gc;
+#end
+
 #if linux
 @:cppInclude('./external/gamemode_client.h')
 @:cppFileCode('
@@ -55,7 +59,7 @@ class Main extends Sprite
 	public static function main():Void
 	{
 		#if windows
-		cpp.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
+		cpputils.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
 		 #end
 		Lib.current.addChild(new Main());
 	}
@@ -63,6 +67,13 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+
+		#if windows //DPI AWARENESS BABY
+		@:functionCode('
+		#include <Windows.h>
+		SetProcessDPIAware()
+		')
+		#end
 
 			trace('WAKE UP');
 
@@ -112,11 +123,6 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
-
-		#if windows
-		cpp.CppAPI.darkMode();   // The code that enables dark mode. ONLY WORKS ON WINDOWS
-		 #end
-
 
 
 		#if !mobile

@@ -1,7 +1,7 @@
 #if !macro
 //Discord API
 #if DISCORD_ALLOWED
-import backend.Discord;
+import api.DiscordAPI;
 #end
 
 //Psych
@@ -43,12 +43,20 @@ import states.LoadingState;
 import flxanimate.*;
 #end
 
-//CPP
-import cpp.CppAPI;
-import cpp.Transparency;
-import cpp.Wallpaper;
-import cpp.WindowsData;
-import cpp.WindowsSystem;
+//Input
+import backend.EtternaFunctions;
+
+//Utils
+
+//CPP Utils
+import cpputils.CppAPI;
+import cpputils.Transparency;
+import cpputils.Wallpaper;
+import cpputils.WindowsData;
+import cpputils.WindowsSystem;
+
+//System Utils
+import sysutils.SystemFetching;
 
 //Flixel
 import flixel.sound.FlxSound;

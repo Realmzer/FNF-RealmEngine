@@ -14,6 +14,7 @@ import openfl.geom.Rectangle;
 
 import lime.utils.Assets;
 import flash.media.Sound;
+import backend.ClientPrefs;
 
 import haxe.Json;
 
@@ -248,7 +249,10 @@ class Paths
 			if(retVal != null) return retVal;
 		}
 
+		if (!ClientPrefs.data.oppstrumstatic && !ClientPrefs.data.playerstrumstatic)
+			{
 		trace('oh no its returning null NOOOO ($file)');
+			}
 		return null;
 	}
 

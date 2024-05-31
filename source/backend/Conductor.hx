@@ -20,6 +20,7 @@ class Conductor
 	public static var songPosition:Float = 0;
 	public static var offset:Float = 0;
 
+	public static var timeScale:Float = Conductor.safeZoneOffset / 180; //max hit window should be 180 right?
 	//public static var safeFrames:Int = 10;
 	public static var safeZoneOffset:Float = 0; // is calculated in create(), is safeFrames in milliseconds
 
@@ -121,7 +122,8 @@ class Conductor
 			totalSteps += deltaSteps;
 			totalPos += ((60 / curBPM) * 1000 / 4) * deltaSteps;
 		}
-		trace("new BPM map BUDDY " + bpmChangeMap);
+		//trace("new BPM map BUDDY " + bpmChangeMap); //Does nothing but add more things to CMD :/
+		trace("BPM: " + curBPM);
 	}
 
 	static function getSectionBeats(song:SwagSong, section:Int)
@@ -134,6 +136,12 @@ class Conductor
 	inline public static function calculateCrochet(bpm:Float){
 		return (60/bpm)*1000;
 	}
+
+	public static function recalculateTimings()
+		{
+			Conductor.safeZoneOffset = Math.floor((ClientPrefs.data.safeFrames / 60) * 1000);
+			Conductor.timeScale = Conductor.safeZoneOffset / 180;
+		}
 
 	public static function set_bpm(newBPM:Float):Float {
 		bpm = newBPM;

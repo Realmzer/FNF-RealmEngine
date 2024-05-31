@@ -76,8 +76,12 @@ import states.TitleState;
 	public var safeFrames:Float = 10;
 	public var guitarHeroSustains:Bool = true;
 	public var discordRPC:Bool = true;
-	public var nomoreLag:Bool = true;
-	public var strumstatic:Bool = false;
+	public var noratings:Bool = true;
+	public var nosplashes:Bool = false;
+	public var enableGC:Bool = false;
+	public var resolution:String = '1280x720';
+	public var oppstrumstatic:Bool = false;
+	public var playerstrumstatic:Bool = false;
 	public var hideDeCharacter:Bool = false;
 }
 

@@ -43,10 +43,10 @@ import flixel.input.gamepad.FlxGamepadInputID;
 
 import haxe.Json;
 
-import cpp.CppAPI;
-import cpp.Transparency;
-import cpp.Wallpaper;
-import cpp.WindowsData;
+import cpputils.CppAPI;
+import cpputils.Transparency;
+import cpputils.Wallpaper;
+import cpputils.WindowsData;
 
 class FunkinLua {
 	public var lua:State = null;
@@ -788,12 +788,27 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "precacheImage", function(name:String, ?allowGPU:Bool = true) {
 			Paths.image(name, allowGPU);
+			trace('Image Cached');
 		});
 		Lua_helper.add_callback(lua, "precacheSound", function(name:String) {
 			Paths.sound(name);
+			trace('Sound Cached');
 		});
 		Lua_helper.add_callback(lua, "precacheMusic", function(name:String) {
 			Paths.music(name);
+			trace('Music Cached');
+		});
+		Lua_helper.add_callback(lua, "precacheShaderFrag", function(name:String) {
+			Paths.shaderFragment(name);
+			trace('Fragement Shader Cached');
+		});
+		Lua_helper.add_callback(lua, "precacheShaderVert", function(name:String) {
+			Paths.shaderVertex(name);
+			trace('Vertex Shader Cached');
+		});
+		Lua_helper.add_callback(lua, "precacheVideo", function(name:String) {
+			Paths.video(name);
+			trace('Video Cached');
 		});
 
 		// others
@@ -1469,6 +1484,10 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "showErrorWindow", LuaUtils.showErrorWindow);
 
 		Lua_helper.add_callback(lua, "pauseAudio", LuaUtils.pauseAudio);
+
+		Lua_helper.add_callback(lua, "deleteFile", LuaUtils.deleteFile);
+
+		Lua_helper.add_callback(lua, "openPage", LuaUtils.openPage);
 
 		#if FLX_PITCH
 		Lua_helper.add_callback(lua, "getSoundPitch", function(tag:String) {
