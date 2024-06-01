@@ -104,6 +104,7 @@ class HScript extends SScript
 		set('Character', Character);
 		set('Alphabet', Alphabet);
 		set('Note', objects.Note);
+		
 		set('CustomSubstate', CustomSubstate);
 		#if (!flash && sys)
 		set('FlxRuntimeShader', flixel.addons.display.FlxRuntimeShader);

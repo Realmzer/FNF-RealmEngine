@@ -171,7 +171,7 @@ class ChartingState extends MusicBeatState
 	public static var quantization:Int = 16;
 	public static var curQuant = 3;
 
-	public var quantizations:Array<Int> = [
+public var quantizations:Array<Int> = [
 		4,
 		8,
 		12,
@@ -182,9 +182,10 @@ class ChartingState extends MusicBeatState
 		48,
 		64,
 		96,
-		192
+		192,
+		384,
+		768
 	];
-
 	var text:String = "";
 	public static var vortex:Bool = false;
 	public var mouseQuant:Bool = false;
@@ -475,7 +476,7 @@ class ChartingState extends MusicBeatState
 		clear_notes.color = FlxColor.RED;
 		clear_notes.label.color = FlxColor.WHITE;
 
-		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 70, 1, 1, 1, 400, 3);
+		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 70, 1, 1, 1, 999999, 3);
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 		blockPressWhileTypingOnStepper.push(stepperBPM);

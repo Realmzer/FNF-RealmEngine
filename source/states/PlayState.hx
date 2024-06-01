@@ -551,6 +551,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
+		if(ClientPrefs.data.smoothbar){
 		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return curHealth, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
@@ -559,6 +560,18 @@ class PlayState extends MusicBeatState
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
+		}
+
+		if(!ClientPrefs.data.smoothbar){
+		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), 'healthBar', function() return health, 0, 2);
+		healthBar.screenCenter(X);
+		healthBar.leftToRight = false;
+		healthBar.scrollFactor.set();
+		healthBar.visible = !ClientPrefs.data.hideHud;
+		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
+		reloadHealthBarColors();
+		uiGroup.add(healthBar);
+		}
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
@@ -1697,6 +1710,12 @@ class PlayState extends MusicBeatState
 		updateIconsScale(elapsed);
 		updateIconsPosition();
 
+
+		if(ClientPrefs.data.smoothbar)
+			{
+		curHealth = FlxMath.lerp(curHealth, health, .2 / (ClientPrefs.data.framerate / 60));
+			}
+
 		if (startedCountdown && !paused)
 			Conductor.songPosition += FlxG.elapsed * 1000 * playbackRate;
 
@@ -1866,7 +1885,6 @@ class PlayState extends MusicBeatState
 		// update health bar
 		health = value;
 		var newPercent:Null<Float> = FlxMath.remapToRange(FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max), healthBar.bounds.min, healthBar.bounds.max, 0, 100);
-		curHealth = FlxMath.lerp(curHealth, health, .2 / (ClientPrefs.data.framerate / 60));
 		
 
 		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
@@ -2684,7 +2702,7 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = lastTime;
 
 		var spr:StrumNote = playerStrums.members[key];
-		if(strumsBlocked[key] != true && spr != null && spr.animation.curAnim.name != 'confirm')
+		if(strumsBlocked[key] != true && spr != null && spr.animation.curAnim.name != 'confirm' && !ClientPrefs.data.playerstrumstatic && !ClientPrefs.data.oppstrumstatic)
 		{
 			spr.playAnim('pressed');
 			spr.resetAnim = 0;
@@ -2999,7 +3017,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if(!cpuControlled)
+		if(!cpuControlled && !ClientPrefs.data.playerstrumstatic)
 		{
 			var spr = playerStrums.members[note.noteData];
 			if(spr != null) spr.playAnim('confirm', true);
@@ -3419,11 +3437,13 @@ class PlayState extends MusicBeatState
 		}
 		}
 
+		if(!ClientPrefs.data.playerstrumstatic){	
 		if(spr != null) {
 			spr.playAnim('confirm', true);
 			spr.resetAnim = time;
 		}
 	}
+}
 
 	public var ratingName:String = '?';
 	public var ratingPercent:Float;

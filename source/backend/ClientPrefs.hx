@@ -46,6 +46,8 @@ import states.TitleState;
 	public var checkForUpdates:Bool = true;
 	public var comboStacking:Bool = true;
 	public var darkMode:Bool = true;
+
+	// The Modifiers
 	public var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -67,7 +69,6 @@ import states.TitleState;
 		'botplay' => false,
 		'opponentplay' => false
 	];
-
 	public var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public var ratingOffset:Int = 0;
 	public var sickWindow:Int = 45;
@@ -76,6 +77,8 @@ import states.TitleState;
 	public var safeFrames:Float = 10;
 	public var guitarHeroSustains:Bool = true;
 	public var discordRPC:Bool = true;
+	
+	// Optimizations
 	public var noratings:Bool = true;
 	public var nosplashes:Bool = false;
 	public var enableGC:Bool = false;
@@ -83,6 +86,9 @@ import states.TitleState;
 	public var oppstrumstatic:Bool = false;
 	public var playerstrumstatic:Bool = false;
 	public var hideDeCharacter:Bool = false;
+
+	// QOL
+	public var smoothbar:Bool = true;
 }
 
 class ClientPrefs {

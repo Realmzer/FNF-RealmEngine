@@ -22,6 +22,13 @@ import haxe.Json;
 #if MODS_ALLOWED
 import backend.Mods;
 #end
+#if cpp
+import cpp.vm.Gc;
+#elseif hl
+import hl.Gc;
+#elseif neko
+import neko.vm.Gc;
+#end
 
 class Paths
 {
@@ -52,6 +59,8 @@ class Paths
 					obj.persist = false; // make sure the garbage collector actually clears it up
 					obj.destroyOnNoUse = true;
 					obj.destroy();
+					compress();
+					gc(true);
 				}
 			}
 		}
@@ -59,6 +68,29 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		System.gc();
 	}
+
+	@:noCompletion private inline static function _gc(major:Bool) {
+		#if (cpp || neko)
+		Gc.run(major);
+		#elseif hl
+		Gc.major();
+		#end
+	}
+
+	@:noCompletion public inline static function compress() {
+		#if cpp
+		Gc.compact();
+		#elseif hl
+		Gc.major();
+		#elseif neko
+		Gc.run(true);
+		#end
+	}
+
+	public inline static function gc(major:Bool = false, repeat:Int = 1) {
+		while(repeat-- > 0) _gc(major);
+	}
+
 
 	// define the locally tracked assets
 	public static var localTrackedAssets:Array<String> = [];
@@ -95,6 +127,8 @@ class Paths
 	{
 		currentLevel = name.toLowerCase();
 	}
+
+	
 
 	public static function getPath(file:String, ?type:AssetType = TEXT, ?library:Null<String> = null, ?modsAllowed:Bool = false):String
 	{
@@ -157,6 +191,11 @@ class Paths
 	{
 		return getPath('data/$key.json', TEXT, library);
 	}
+	
+	inline static public function ps1(key:String, ?library:String)
+	{
+		return getPath('data/$key.ps1', library);
+	}
 
 	inline static public function shaderFragment(key:String, ?library:String)
 	{
@@ -170,6 +209,26 @@ class Paths
 	{
 		return getPath('$key.lua', TEXT, library);
 	}
+	inline static public function obj(key:String) {
+		return getPath('models/$key.obj');
+	}
+
+	inline static public function dae(key:String) {
+		return getPath('models/$key.dae');
+	}
+
+	inline static public function md2(key:String) {
+		return getPath('models/$key.md2');
+	}
+
+	inline static public function md5(key:String) {
+		return getPath('models/$key.md5');
+	}
+
+	inline static public function awd(key:String) {
+		return getPath('models/$key.awd');
+	}
+
 
 	static public function video(key:String)
 	{

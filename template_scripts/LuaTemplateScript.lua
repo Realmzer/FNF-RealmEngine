@@ -242,3 +242,9 @@ showErrorWindow('message','title') -- opens a error message with a custom title 
 
 pauseAudio(vocals, oppVocals, music) -- takes a boolean to pause the audio, eg true, true, false (pause vocals, oppVocals and keep music playing)
 
+openPage('url') -- Opens a web page. Requires you to add the https:// or http://
+
+deleteFile('path')
+
+
+
