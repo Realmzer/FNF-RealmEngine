@@ -160,6 +160,12 @@ class VisualsUISubState extends BaseOptionsMenu
 		//addOption(option);
         #end
 
+		var option:Option = new Option('Realm Style Title Screen',
+		"If checked, makes the title screen in the style of Realm Engine",
+		'realmstyletitle',
+		'bool');
+		addOption(option);
+
 		super();
 		add(notes);
 	}

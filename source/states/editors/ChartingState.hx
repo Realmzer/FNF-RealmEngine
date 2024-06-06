@@ -25,6 +25,7 @@ import openfl.events.IOErrorEvent;
 import openfl.media.Sound;
 import openfl.net.FileReference;
 import openfl.utils.Assets as OpenFlAssets;
+import flixel.util.FlxGradient;
 
 import backend.Song;
 import backend.Section;
@@ -144,6 +145,9 @@ class ChartingState extends MusicBeatState
 	var value2InputText:FlxUIInputText;
 	var currentSongName:String;
 
+	var autosaveIndicator:FlxSprite;
+
+
 	var zoomTxt:FlxText;
 
 	var zoomList:Array<Float> = [
@@ -226,6 +230,13 @@ public var quantizations:Array<Int> = [
 		bg.scrollFactor.set();
 		bg.color = 0xFF222222;
 		add(bg);
+
+		var gradent:FlxSprite = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height, [0xFF800080, 0xFFFF00FF], 90);
+		gradent.alpha = 0.15;
+		gradent.scrollFactor.set();
+		gradent.setGraphicSize(2300, 2000);
+		add(gradent);
+		FlxTween.tween(gradent, {angle: 360}, 10, {ease: FlxEase.quadInOut, type: LOOPING});
 
 		gridLayer = new FlxTypedGroup<FlxSprite>();
 		add(gridLayer);
@@ -352,6 +363,13 @@ public var quantizations:Array<Int> = [
 		}
 		add(UI_box);
 
+		autosaveIndicator = new FlxSprite(-30, FlxG.height - 90).loadGraphic(Paths.image('autosaveIndicator'));
+		autosaveIndicator.setGraphicSize(200, 70);
+		autosaveIndicator.alpha = 0;
+		autosaveIndicator.scrollFactor.set();
+		autosaveIndicator.antialiasing = ClientPrefs.data.antialiasing;
+		add(autosaveIndicator);
+
 		addSongUI();
 		addSectionUI();
 		addNoteUI();
@@ -456,6 +474,11 @@ public var quantizations:Array<Int> = [
 		{
 			saveEvents();
 		});
+
+		var autosaveButton:FlxButton = new FlxButton(saveEvents.x, reloadSongJson.y + 60, "Save to Autosave", function()
+			{
+				autosaveSong();
+			});
 
 		var clear_events:FlxButton = new FlxButton(320, 310, 'Clear events', function()
 			{
@@ -602,6 +625,7 @@ public var quantizations:Array<Int> = [
 		tab_group_song.add(reloadSong);
 		tab_group_song.add(reloadSongJson);
 		tab_group_song.add(loadAutosaveBtn);
+		tab_group_song.add(autosaveButton);
 		tab_group_song.add(loadEventJson);
 		tab_group_song.add(stepperBPM);
 		tab_group_song.add(stepperSpeed);
@@ -3138,13 +3162,19 @@ public var quantizations:Array<Int> = [
 		}
 	}
 
-	function autosaveSong():Void
-	{
-		FlxG.save.data.autosave = haxe.Json.stringify({
-			"song": _song
-		});
-		FlxG.save.flush();
-	}
+	public function autosaveSong():Void
+		{
+			FlxG.save.data.autosave = Json.stringify({
+				"song": _song
+			});
+			trace('Chart saved!');
+			FlxTween.tween(autosaveIndicator, {alpha: 1}, 1, {ease: FlxEase.backInOut, type: ONESHOT});
+			
+			new FlxTimer().start(3, function(tmr:FlxTimer) {
+				FlxTween.tween(autosaveIndicator, {alpha: 0}, 1, {ease: FlxEase.backInOut, type: ONESHOT});
+			});
+			FlxG.save.flush();
+		}
 
 	function clearEvents() {
 		_song.events = [];

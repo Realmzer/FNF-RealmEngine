@@ -86,7 +86,7 @@
 		<assets path='example_mods' rename='mods' embed='false'/>
 	</section>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
-	<assets path='template_scripts' rename='template-scripts' embed='false'/>
+	<assets path='docs/TemplateScripts' rename='Template-Scripts' embed='false'/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

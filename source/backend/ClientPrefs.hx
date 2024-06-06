@@ -89,6 +89,8 @@ import states.TitleState;
 
 	// QOL
 	public var smoothbar:Bool = true;
+
+	public var realmstyletitle:Bool = true;
 }
 
 class ClientPrefs {
