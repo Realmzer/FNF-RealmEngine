@@ -586,6 +586,7 @@ class LuaUtils
 		switch(cam.toLowerCase()) {
 			case 'camhud' | 'hud': return PlayState.instance.camHUD;
 			case 'camother' | 'other': return PlayState.instance.camOther;
+			case 'camextra' | 'extra': return PlayState.instance.camExtra;
 		}
 		return PlayState.instance.camGame;
 	}

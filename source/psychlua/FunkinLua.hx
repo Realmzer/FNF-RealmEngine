@@ -815,6 +815,10 @@ class FunkinLua {
 			Paths.video(name);
 			trace('Video Cached');
 		});
+		Lua_helper.add_callback(lua, "precacheObj", function(name:String) {
+			Paths.obj(name);
+			trace('Obj Cached');
+		});
 
 		// others
 		Lua_helper.add_callback(lua, "triggerEvent", function(name:String, arg1:Dynamic, arg2:Dynamic) {

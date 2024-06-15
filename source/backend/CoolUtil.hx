@@ -26,6 +26,7 @@ class CoolUtil
 	}
 	#end
 
+
 	public static function getUsername():String
 		{
 			// uhh this one is self explanatory
