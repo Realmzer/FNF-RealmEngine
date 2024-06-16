@@ -4,6 +4,7 @@ import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import haxe.io.Bytes;
 import backend.Song.SwagSong;
+import states.PlayState;
 
 
 class CoolUtil
@@ -25,6 +26,63 @@ class CoolUtil
 		resH = height/baseH;
 	}
 	#end
+
+	public static var programList:Array<String> = [
+		'obs',
+		'bdcam',
+		'fraps',
+		'xsplit',
+		'hycam2', 
+		'twitchstudio'
+	];
+
+	public static function getFPSCap():Int
+		{
+			return Std.int(openfl.Lib.current.stage.frameRate);
+		}
+	
+		public static function setFPSCap(cap:Int):Void
+		{
+			openfl.Lib.current.stage.frameRate = cap;
+		}
+
+	public static function isRecording():Bool
+		{
+			#if FEATURE_OBS
+			var isOBS:Bool = false;
+	
+			try
+			{
+				#if windows
+				var taskList:Process = new Process('tasklist');
+				#elseif (linux || macos)
+				var taskList:Process = new Process('ps --no-headers');
+				#end
+				var readableList:String = taskList.stdout.readAll().toString().toLowerCase();
+	
+				for (i in 0...programList.length)
+				{
+					if (readableList.contains(programList[i]))
+						isOBS = true;
+				}
+	
+				taskList.close();
+				readableList = '';
+			}
+			catch (e)
+			{
+				// If for some reason the game crashes when trying to run Process, just force OBS on
+				// in case this happens when they're streaming.
+				isOBS = true;
+			}
+	
+			return isOBS;
+			#else
+			return false;
+			#end
+		}
+	
+
 
 
 	public static function getUsername():String
@@ -454,4 +512,9 @@ class CoolUtil
 				text.borderStyle = NONE;
 		}
 	}
+
+	//public function calcSectionLength(multiplier:Float = 1.0):Float
+	//	{
+		//	return (Conductor.stepCrochet / (64 / multiplier)) / PlayState.playbackRate;
+	//	}
 }
