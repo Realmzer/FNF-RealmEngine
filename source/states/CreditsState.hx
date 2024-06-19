@@ -41,6 +41,7 @@ class CreditsState extends MusicBeatState
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['Realm Engine Team'],
 			['Realmzer',            'realmzer',         'Main Programmer of Realm engine',                           'https://twitter.com/Realmzer',        'C06FFF'],
+			['Rioblos',             'rio (1)',          'Credit Icon',                                      		 ' ', 									'976161']
 			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer and Head of Psych Engine',					 'https://ko-fi.com/shadowmario',		'444444'],
