@@ -14,6 +14,6 @@ Hey there. Realm Engine is a Psych 0.7.3 fork that will support,
 - CNE Team - 3D support
 - Psych Engine Team - Original Psych Engine Creators
 - JordanSantiagoYT - Some Optimizations
-- Rioblos - Realmzer credit icon ![rio (1)](https://github.com/Realmzer/FNF-RealmEngine/assets/120264700/c8cbba20-ab65-45ce-80c3-3ce456383f61)
+- Rioblos - Realmzer credit icon
 
 
