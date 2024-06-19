@@ -35,7 +35,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if(rpcTitle == null) rpcTitle = 'Options Menu';
 		
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence(rpcTitle, null);
+		DiscordAPI.changePresence(rpcTitle, null);
 		#end
 		
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));

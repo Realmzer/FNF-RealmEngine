@@ -5,7 +5,7 @@ import lime.app.Application;
 import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types;
 
-class DiscordClient
+class DiscordAPI
 {
 	public static var isInitialized:Bool = false;
 	private static final _defaultID:String = "863222024192262205";

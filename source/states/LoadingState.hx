@@ -45,7 +45,7 @@ class LoadingState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Loading...", null);
+		DiscordAPI.changePresence("Loading...", null);
 		#end
 
 		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);

@@ -116,6 +116,12 @@ class CoolUtil
 			#end
 		}
 
+	public static function getOS()
+		{
+			return Sys.systemName();
+		}
+	
+
 	public static function checkForOBS():Bool
 		{
 			var fs:Bool = FlxG.fullscreen;

@@ -72,7 +72,7 @@ class TitleState extends MusicBeatState
 	{
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Title Screen", null);
+		DiscordAPI.changePresence("In the Title Screen", null);
 		#end
 
 		Paths.clearStoredMemory();

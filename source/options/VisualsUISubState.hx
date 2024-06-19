@@ -120,6 +120,12 @@ class VisualsUISubState extends BaseOptionsMenu
 			'bool');
 		addOption(option);
 		option.onChange = onChangeFPSCounter;
+		
+		var option:Option = new Option('Debug Info',
+		'If checked, shows debug info on the FPS counter.',
+		'debugInfo',
+		'bool');
+		//addOption(option);
 		#end
 		
 		var option:Option = new Option('Pause Screen Song:',

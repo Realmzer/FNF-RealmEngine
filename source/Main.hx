@@ -75,7 +75,7 @@ class Main extends Sprite
 		')
 		#end
 
-			trace('WAKE UP');
+			trace('Game Successfully Started!');
 
 		// Credits to MAJigsaw77 (he's the og author for this code)
 		#if android
@@ -150,7 +150,7 @@ class Main extends Sprite
 		#end
 
 		#if DISCORD_ALLOWED
-		DiscordClient.prepare();
+		DiscordAPI.prepare();
 		#end
 
 		// shader coords fix
@@ -187,7 +187,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crashlog/" + "RealmEngine" + dateNow + ".txt";
+		path = "./crashlog/" + "RealmEngine_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -212,7 +212,7 @@ class Main extends Sprite
 
 		Application.current.window.alert(errMsg, "Error!");
 		#if DISCORD_ALLOWED
-		DiscordClient.shutdown();
+		DiscordAPI.shutdown();
 		#end
 		Sys.exit(1);
 	}

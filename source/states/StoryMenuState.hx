@@ -81,7 +81,7 @@ class StoryMenuState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Story Menu", null);
+		DiscordAPI.changePresence("In the Story Menu", null);
 		#end
 
 		var num:Int = 0;
@@ -326,7 +326,7 @@ class StoryMenuState extends MusicBeatState
 			});
 			
 			#if (MODS_ALLOWED && DISCORD_ALLOWED)
-			DiscordClient.loadModRPC();
+			DiscordAPI.loadModRPC();
 			#end
 		}
 		else FlxG.sound.play(Paths.sound('cancelMenu'));

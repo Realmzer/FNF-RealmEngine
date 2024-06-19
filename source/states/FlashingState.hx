@@ -15,7 +15,7 @@ class FlashingState extends MusicBeatState
 	{
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Flashing Menu", null);
+		DiscordAPI.changePresence("In the Flashing Menu", null);
 		#end
 
 		super.create();

@@ -10,7 +10,7 @@ class OutdatedState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Update Menu", null);
+		DiscordAPI.changePresence("In the Update Menu", null);
 		#end
 
 		super.create();

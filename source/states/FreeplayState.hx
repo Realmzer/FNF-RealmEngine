@@ -60,7 +60,7 @@ class FreeplayState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Freeplay Menu", null);
+		DiscordAPI.changePresence("In the Freeplay Menu", null);
 		#end
 
 		for (i in 0...WeekData.weeksList.length) {
@@ -402,7 +402,7 @@ class FreeplayState extends MusicBeatState
 					
 			destroyFreeplayVocals();
 			#if (MODS_ALLOWED && DISCORD_ALLOWED)
-			DiscordClient.loadModRPC();
+			DiscordAPI.loadModRPC();
 			#end
 		}
 		else if(controls.RESET && !player.playingMusic)

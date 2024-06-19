@@ -17,6 +17,7 @@ import flash.text.AntiAliasType;
 import flash.text.GridFitType;
 #end
 
+
 /**
  * The flixel sound tray, the little volume meter that pops down sometimes.
  */
@@ -99,33 +100,40 @@ class FlxSoundTray extends Sprite // Dave and Bambi 3.0
 		visible = false;
 	}
 
+
 	/**
-	 * This function just updates the soundtray object.
+	 * This function updates the soundtray object.
 	 */
-	public function update(MS:Float):Void
-	{
-		// Animate stupid sound tray thing
-		if (_timer > 0)
+	 public function update(MS:Float):Void
 		{
-			_timer -= MS / 1000;
-		}
-		else if (y > -height)
-		{
-			y -= (MS / 1000) * FlxG.height * 2;
-
-			if (y <= -height)
+			// Animate sound tray thing
+			if (_timer > 0)
 			{
-				visible = false;
-				active = false;
-
-				// Save sound preferences
-				FlxG.save.data.mute = FlxG.sound.muted;
-				FlxG.save.data.volume = FlxG.sound.volume;
-				FlxG.save.flush();
+				_timer -= (MS / 1000);
+			}
+			else if (y > -height)
+			{
+				y -= (MS / 1000) * height * 1;
+	
+				if (y <= -height)
+				{
+					visible = false;
+					active = false;
+	
+					#if FLX_SAVE
+					// Save sound preferences
+					if (FlxG.save.isBound)
+					{
+						FlxG.save.data.mute = FlxG.sound.muted;
+						FlxG.save.data.volume = FlxG.sound.volume;
+						FlxG.save.flush();
+					}
+					#end
+				}
 			}
 		}
-	}
 
+		
 	/**
 	 * Makes the little volume tray slide out.
 	 *
