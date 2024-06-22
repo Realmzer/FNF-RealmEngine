@@ -11,6 +11,7 @@ import flixel.util.FlxStringUtil;
 import states.StoryMenuState;
 import states.FreeplayState;
 import options.OptionsState;
+import backend.ClientPrefs;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -344,13 +345,15 @@ class PauseSubState extends MusicBeatSubstate
 		FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
 
-		if(noTrans)
-		{
+		if(ClientPrefs.data.restartskiptran)
+			{
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
-		}
+			}
+
 		MusicBeatState.resetState();
 	}
+
 
 	override function destroy()
 	{

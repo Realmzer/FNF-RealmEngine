@@ -5,7 +5,7 @@ import backend.StageData;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Optimizations', 'Visuals and UI', 'Gameplay', 'QOL'];
+	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Optimizations', 'Visuals and UI', 'Gameplay', 'QOL', 'Misc'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -32,6 +32,8 @@ class OptionsState extends MusicBeatState
 				openSubState(new options.OptimizationsSubState());
 			case 'QOL':
 				openSubState(new options.QOLSubstate());
+			case 'Misc':
+				openSubState(new options.MiscSubstate());
 			case 'Adjust Delay and Combo':
 				MusicBeatState.switchState(new options.NoteOffsetState());
 		}
@@ -60,7 +62,7 @@ class OptionsState extends MusicBeatState
 		{
 			var optionText:Alphabet = new Alphabet(0, 0, options[i], true);
 			optionText.screenCenter();
-			optionText.y += (100 * (i - (options.length / 2))) + 50;
+			optionText.y += (80 * (i - (options.length / 2.22))) + 0;
 			grpOptions.add(optionText);
 		}
 

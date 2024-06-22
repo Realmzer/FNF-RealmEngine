@@ -80,7 +80,7 @@ import states.TitleState;
 	public var discordRPC:Bool = true;
 	
 	// Optimizations
-	public var noratings:Bool = true;
+	public var noratings:Bool = false;
 	public var nosplashes:Bool = false;
 	public var enableGC:Bool = false;
 	public var resolution:String = '1280x720';
@@ -92,6 +92,10 @@ import states.TitleState;
 	public var smoothbar:Bool = true;
 
 	public var realmstyletitle:Bool = true;
+
+	// Miscellaneous
+	public var restartskiptran:Bool = false;
+
 }
 
 class ClientPrefs {
