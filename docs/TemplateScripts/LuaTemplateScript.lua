@@ -244,7 +244,9 @@ pauseAudio(vocals, oppVocals, music) -- takes a boolean to pause the audio, eg t
 
 openPage('url') -- Opens a web page. Requires you to add the https:// or http://
 
-deleteFile('path')
+deleteFile('path') -- Allows you to delete a file
+
+windowName('string') -- Allows you to easily change the window name
 
 
 

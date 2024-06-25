@@ -83,7 +83,7 @@ class HScript extends SScript
 	override function preset() {
 		super.preset();
 
-		// Some very commonly used classes
+		// Some used classes
 		set('FlxG', flixel.FlxG);
 		set('FlxMath', flixel.math.FlxMath);
 		set('FlxSprite', flixel.FlxSprite);
@@ -93,10 +93,114 @@ class HScript extends SScript
 		set('FlxTween', flixel.tweens.FlxTween);
 		set('FlxEase', flixel.tweens.FlxEase);
 		set('FlxColor', CustomFlxColor);
+		set('FlxCollision', flixel.util.FlxCollision);
+		set('FlxGroup', flixel.group.FlxGroup);
+		set('FlxText', flixel.text.FlxText);
+		set('FlxSpriteGroup', flixel.group.FlxSpriteGroup);
+		set('FlxTypedGroup', flixel.group.FlxGroup.FlxTypedGroup);
+		set('FlxObject', flixel.FlxObject);
+		set('Promise', lime.app.Promise);
+		set('Future', lime.app.Future); 
+		set('FlxState', flixel.FlxState);
+		set('Path', haxe.io.Path);
+		set('FlxGraphic', flixel.graphics.FlxGraphic);
+		set('Json', haxe.Json);
+		set('FlxSort', flixel.util.FlxSort);
+		set('FlxSave', flixel.util.FlxSave);
+		set('FlxBasic', flixel.FlxBasic);
+		set('FlxSpriteUtil', flixel.util.FlxSpriteUtil);
+		set('MainMenuState', states.MainMenuState);
+		set('ModsMenuState', states.ModsMenuState);
+		set('OutdatedState', states.OutdatedState);
+		set('StoryMenuState', states.StoryMenuState);
+		set('TitleScreen', states.TitleState);
+		set('FreeplayState', states.FreeplayState);
+		set('FlashingState', states.FlashingState);
+		set('CreditsState', states.CreditsState);
+		set('AchievementsMenuState', states.AchievementsMenuState);
+		set('ChartingState', states.editors.ChartingState);
+		set('MasterEditorMenu', states.editors.MasterEditorMenu);
+		set('WeekEditorState', states.editors.WeekEditorState);
+		set('CharacterEditorState', states.editors.CharacterEditorState);
+		set('DialogueCharacterEditorState', states.editors.DialogueCharacterEditorState);
+		set('DialogueEditorState', states.editors.DialogueEditorState);
+		set('EditorPlayState', states.editors.EditorPlayState);
+		set('MenuCharacterEditorState', states.editors.MenuCharacterEditorState);
+		set('NoteSplashDebugState', states.editors.NoteSplashDebugState);
+		set('Highscore', backend.Highscore);
+		set('MusicBeatState', backend.MusicBeatState);
+		set('MusicBeatSubstate', backend.MusicBeatSubstate);
+		set('StageData', backend.StageData);
+		set('WeekData', backend.WeekData);
+		set('DialogueBox', cutscenes.DialogueBox);
+		set('DialogueBoxPsych', cutscenes.DialogueBoxPsych);
+		set('DialogueCharacter', cutscenes.DialogueCharacter);
+		set('CutsceneHandler', cutscenes.CutsceneHandler);
+		set('InputFormatter', backend.InputFormatter);
+		set('NoteTypesConfig', backend.NoteTypesConfig);
+		set('PsychCamera', backend.PsychCamera);
+		set('BaseStage', backend.BaseStage);
+		set('Achievements', backend.Achievements);
+		set('PsychAnimationController', backend.animation.PsychAnimationController);
+		set('FPSCounter', debug.FPSCounter);
+		set('BaseOptionsMenu', options.BaseOptionsMenu);
+		set('ControlsSubState', options.ControlsSubState);
+		set('GameplaySettingsSubState', options.GameplaySettingsSubState);
+		set('GraphicsSettingsSubState', options.GraphicsSettingsSubState);
+		set('MiscSubstate', options.MiscSubstate);
+		set('ModSettingsSubState', options.ModSettingsSubState);
+		set('NoteOffsetState', options.NoteOffsetState);
+		set('NotesSubState', options.NotesSubState);
+		set('OptimizationsSubState', options.OptimizationsSubState);
+		set('Option', options.Option);
+		set('OptionsState', options.OptionsState);
+		set('QOLSubstate', options.QOLSubstate);
+		set('VisualsUISubState', options.VisualsUISubState);
+		set('GameOverSubState', substates.GameOverSubstate);
+
+		set('GameplayChangersSubstate', substates.GameplayChangersSubstate);
+		set('PauseSubState', substates.PauseSubState);
+		set('Prompt', substates.Prompt);
+		set('ResetScoreSubState', substates.ResetScoreSubState);
+		//set('FlxKey', flixel.input.keyboard.FlxKey);
+		set('Bitmap', openfl.display.Bitmap);
+		set('BitmapData', openfl.display.BitmapData);
+		set('Assets', openfl.utils.Assets);
+		set('Rectangle', flash.geom.Rectangle);
+		set('StageData', backend.StageData);
+		set('Song', backend.Song);
+		set('Section', backend.Section);
+		set('Rating', backend.Rating);
+		set('FlxGroup', flixel.group.FlxGroup);
 		set('Countdown', backend.BaseStage.Countdown);
 		set('PlayState', PlayState);
 		set('Paths', Paths);
 		set('Conductor', Conductor);
+		#if MODS_ALLOWED
+		set('Mods', backend.Mods);
+		#end
+		#if DISCORD_ALLOWED
+		set('DiscordAPI', api.DiscordAPI);
+		#end
+		set('AttachedSprite', objects.AttachedSprite);
+		set('FlxAnimationController', flixel.animation.FlxAnimationController);
+		set('FileReference', openfl.net.FileReference);
+		set('FileFilter', flash.net.FileFilter);
+		set('Controls', backend.Controls);
+		set('Bytes', haxe.io.Bytes);
+		set('IOErrorEvent', openfl.events.IOErrorEvent);
+		set('Event', openfl.events.Event);
+		set('Clipboard', lime.system.Clipboard);
+		//set('Entry', haxe.zip.Entry);
+		//set('Writer', haxe.zip.Writer);
+		//set('Exception', haxe.Exception);
+		set('System', openfl.system.System);
+		set('FlxDestroyUtil', flixel.util.FlxDestroyUtil);
+		set('FlxGradient', flixel.util.FlxGradient);
+		set('JsonParser', haxe.format.JsonParser);
+		set('Sound', openfl.media.Sound);
+		set('FileSystem', sys.FileSystem);
+		set('File', sys.io.File);
 		set('ClientPrefs', ClientPrefs);
 		#if ACHIEVEMENTS_ALLOWED
 		set('Achievements', Achievements);
@@ -104,12 +208,29 @@ class HScript extends SScript
 		set('Character', Character);
 		set('Alphabet', Alphabet);
 		set('Note', objects.Note);
-		
+		set('AchievementPopup', objects.AchievementPopup);
+		set('AttachedSprite',	objects.AttachedSprite);
+		set('AttachedText',     objects.AttachedText);
+		set('Bar', 				objects.Bar);
+		set('BGSprite',			objects.BGSprite);
+		set('CheckboxThingie', 	objects.CheckboxThingie);
+		set('HealthIcon',		objects.HealthIcon);
+		set('MenuCharacter',	objects.MenuCharacter);
+		set('MenuItem',			objects.MenuItem);
+		set('MusicPlayer',		objects.MusicPlayer);
+		set('NoteSplash',		objects.NoteSplash);
+		set('StrumNote',		objects.StrumNote);
+		set('TypedAlphabet',	objects.TypedAlphabet);
 		set('CustomSubstate', CustomSubstate);
 		#if (!flash && sys)
 		set('FlxRuntimeShader', flixel.addons.display.FlxRuntimeShader);
 		#end
+		#if sys
+		set('Sound', flash.media.Sound);
+		#end
 		set('ShaderFilter', openfl.filters.ShaderFilter);
+		set('Application',  lime.app.Application);
+		set('lib',  openfl.Lib);
 		set('StringTools', StringTools);
 		#if flxanimate
 		set('FlxAnimate', FlxAnimate);

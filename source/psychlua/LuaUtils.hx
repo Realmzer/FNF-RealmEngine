@@ -12,6 +12,8 @@ import cpputils.CppAPI;
 import cpputils.Transparency;
 import cpputils.Wallpaper;
 import cpputils.WindowsData;
+import openfl.Lib;
+import lime.app.Application;
 
 typedef LuaTweenOptions = {
 	type:FlxTweenType,
@@ -236,6 +238,13 @@ class LuaUtils
 	public static function showErrorWindow(message:String, errTitle:String = "An error has occured.") {
 		lime.app.Application.current.window.alert(message, errTitle);
 	}
+
+	public static function windowName(title:String)
+		{
+		Lib.application.window.title = title; // Providing an easier way to rename the window in lua
+		}
+
+	
 
 	public static function pauseAudio(vocals:Bool = null, oppVocals:Bool = null, music:Bool = null):Void {
 		if (vocals == null) vocals = true;

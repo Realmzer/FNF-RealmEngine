@@ -5,6 +5,7 @@ import lime.utils.Assets as LimeAssets;
 import haxe.io.Bytes;
 import backend.Song.SwagSong;
 import states.PlayState;
+import openfl.Lib;
 
 
 class CoolUtil
@@ -519,8 +520,25 @@ class CoolUtil
 		}
 	}
 
-	//public function calcSectionLength(multiplier:Float = 1.0):Float
-	//	{
-		//	return (Conductor.stepCrochet / (64 / multiplier)) / PlayState.playbackRate;
-	//	}
+	public static inline function exactSetGraphicSize(obj:Dynamic, width:Float, height:Float) // ACTULLY WORKS LMAO -lunar
+		{
+			obj.scale.set(Math.abs(((obj.width - width) / obj.width) - 1), Math.abs(((obj.height - height) / obj.height) - 1));
+		}
+	
+		public static inline function centerWindowOnPoint(?point:FlxPoint) {
+			Lib.application.window.x = Std.int(point.x - (Lib.application.window.width / 2));
+			Lib.application.window.y = Std.int(point.y - (Lib.application.window.height / 2));
+		}
+	
+		public static inline function getCenterWindowPoint():FlxPoint {
+			return FlxPoint.get(
+				Lib.application.window.x + (Lib.application.window.width / 2),
+				Lib.application.window.y + (Lib.application.window.height / 2)
+			);
+		}
+
+//		public function calcSectionLength(multiplier:Float = 1.0):Float
+	//		{
+		//		return (Conductor.stepCrochet / (64 / multiplier)) / PlayState.playbackRate;
+			//}
 }

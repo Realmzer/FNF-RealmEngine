@@ -4,6 +4,27 @@ package psychlua;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
+import backend.ClientPrefs;
+import backend.Achievements;
+import backend.BaseStage;
+import backend.Conductor;
+import backend.Controls;
+import backend.CoolUtil;
+import backend.CustomFadeTransition;
+import backend.Difficulty;
+import backend.EtternaFunctions;
+import backend.InputFormatter;
+import backend.Mods;
+import backend.MusicBeatState;
+import backend.MusicBeatSubstate;
+import backend.NoteTypesConfig;
+import backend.Paths;
+import backend.PsychCamera;
+import backend.Rating;
+import backend.Section;
+import backend.StageData;
+import backend.WeekData;
+import backend.ZipTool;
 
 import openfl.Lib;
 import openfl.utils.Assets;
@@ -11,17 +32,51 @@ import openfl.display.BitmapData;
 import flixel.FlxBasic;
 import flixel.FlxObject;
 import flixel.addons.transition.FlxTransitionableState;
+import lime.app.Application;
+
+import debug.FPSCounter;
+
+import options.BaseOptionsMenu;
+import options.ControlsSubState;
+import options.GameplaySettingsSubState;
+import options.GraphicsSettingsSubState;
+import options.MiscSubstate;
+import options.ModSettingsSubState;
+import options.NoteOffsetState;
+import options.NotesSubState;
+import options.OptimizationsSubState;
+import options.Option;
+import options.OptionsState;
+import options.QOLSubstate;
+import options.VisualsUISubState;
 
 #if (!flash && sys)
 import flixel.addons.display.FlxRuntimeShader;
 #end
 
 import cutscenes.DialogueBoxPsych;
+import cutscenes.DialogueBox;
+import cutscenes.DialogueCharacter;
+import cutscenes.CutsceneHandler;
 
 import objects.StrumNote;
 import objects.Note;
 import objects.NoteSplash;
 import objects.Character;
+import objects.Bar;
+import objects.BGSprite;
+import objects.AttachedSprite;
+import objects.AttachedText;
+import objects.AchievementPopup;
+import objects.CheckboxThingie;
+import objects.HealthIcon;
+import objects.MenuCharacter;
+import objects.MenuItem;
+import objects.MusicPlayer;
+import objects.NoteSplash;
+import objects.StrumNote;
+import objects.TypedAlphabet;
+import objects.Alphabet;
 
 import states.MainMenuState;
 import states.StoryMenuState;
@@ -29,6 +84,29 @@ import states.FreeplayState;
 
 import substates.PauseSubState;
 import substates.GameOverSubstate;
+import substates.GameplayChangersSubstate;
+import substates.Prompt;
+
+import states.AchievementsMenuState;
+import states.CreditsState;
+import states.FlashingState;
+import states.FreeplayState;
+import states.LoadingState;
+import states.MainMenuState;
+import states.ModsMenuState;
+import states.OutdatedState;
+import states.PlayState;
+import states.StoryMenuState;
+import states.TitleState;
+
+import states.editors.CharacterEditorState;
+import states.editors.ChartingState;
+import states.editors.DialogueCharacterEditorState;
+import states.editors.DialogueEditorState;
+import states.editors.MasterEditorMenu;
+import states.editors.MenuCharacterEditorState;
+import states.editors.NoteSplashDebugState;
+import states.editors.WeekEditorState;
 
 import psychlua.LuaUtils;
 import psychlua.LuaUtils.LuaTweenOptions;
@@ -47,6 +125,7 @@ import cpputils.CppAPI;
 import cpputils.Transparency;
 import cpputils.Wallpaper;
 import cpputils.WindowsData;
+import cpputils.WindowsSystem;
 
 class FunkinLua {
 	public var lua:State = null;
@@ -1497,6 +1576,8 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "deleteFile", LuaUtils.deleteFile);
 
 		Lua_helper.add_callback(lua, "openPage", LuaUtils.openPage);
+
+		Lua_helper.add_callback(lua, "windowName", LuaUtils.windowName);
 
 
 		#if FLX_PITCH
