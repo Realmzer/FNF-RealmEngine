@@ -97,16 +97,26 @@ class TitleState extends MusicBeatState
 		#if CHECK_FOR_UPDATES
 		if(ClientPrefs.data.checkForUpdates && !closedState) {
 			trace('checking for update');
-			var http = new haxe.Http("https://raw.githubusercontent.com/Realmzer/FNF-RealmEngine/main/version.txt");
+			var http = new haxe.Http("https://raw.githubusercontent.com/Realmzer/FNF-RealmEngine/main/CHANGELOG.md");
+			var returnedData:Array<String> = [];
 
 			http.onData = function (data:String)
 			{
-				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.realmEngineVersion;
+    				var versionEndIndex:Int = data.indexOf(';');
+    				returnedData[0] = data.substring(0, versionEndIndex);
+
+    				// Extract the changelog after the version number
+    				returnedData[1] = data.substring(versionEndIndex + 1, data.length);
+				updateVersion = returnedData[0];
+				var curVersion:String = MainMenuState.realmEngineVersion.trim();
 				trace('version online: ' + updateVersion + ', your version: ' + curVersion);
 				if(updateVersion != curVersion) {
 					trace('versions arent matching!');
+					OutdatedState.currChanges = returnedData[1];
 					mustUpdate = true;
+				}
+				if(updateVersion == curVersion) {
+					trace('the versions match!');
 				}
 			}
 

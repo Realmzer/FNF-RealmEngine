@@ -82,6 +82,9 @@ class CppAPI
 	{
 		Transparency.reset();
 	}
+	
+
+
 	public static function allowHighDPI() {
 		WindowsData.registerHighDpi();
 	}

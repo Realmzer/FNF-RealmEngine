@@ -248,5 +248,30 @@ deleteFile('path') -- Allows you to delete a file
 
 windowName('string') -- Allows you to easily change the window name
 
+resizeWindow(width, height) -- Reiszes the window, must be ints
+
+setWindowPos(x, y) -- Sets the window position, must be an int
+
+getWindowX() -- Returns the window's X position
+
+getWindowY() -- Returns the window's Y position
+
+getScreenWidth() -- Returns the screens width
+
+getScreenHeight() -- Returns the screens height
+
+getWindowWidth() -- Returns the window's width
+
+getWindowHeight() -- Returns the window's height
+
+printScore() -- Prints the current song's score to the command line
+
+printMisses() -- Prints the current song's misses to the command line
+
+printRating() -- Prints the current song's rating to the command line
+
+printFcCheck() -- Prints the current song's FC check to check if you have an FC on the command line
+
+
 
 

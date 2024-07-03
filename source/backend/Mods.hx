@@ -1,6 +1,10 @@
 package backend;
 
 import haxe.Json;
+import haxe.zip.Entry;
+import haxe.Exception;
+import sys.io.File;
+import sys.FileSystem;
 
 typedef ModsList = {
 	enabled:Array<String>,
@@ -19,6 +23,7 @@ class Mods
 		'songs',
 		'music',
 		'sounds',
+		'models',
 		'shaders',
 		'videos',
 		'images',

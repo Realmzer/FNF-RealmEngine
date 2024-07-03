@@ -1565,6 +1565,16 @@ class FunkinLua {
 
 		Lua_helper.add_callback(lua, "printd", LuaUtils.printd);
 
+		Lua_helper.add_callback(lua, "printScore", LuaUtils.printScore);
+		
+		Lua_helper.add_callback(lua, "printMisses", LuaUtils.printMisses);
+
+		Lua_helper.add_callback(lua, "printRating", LuaUtils.printRating);
+
+		Lua_helper.add_callback(lua, "printFcCheck", LuaUtils.printFcCheck);
+
+		Lua_helper.add_callback(lua, "printHealth", LuaUtils.printHealth);
+
 		Lua_helper.add_callback(lua, "getSongInfo", LuaUtils.getSongInfo);
 
 		Lua_helper.add_callback(lua, "getRatingShit", LuaUtils.getRatingShit);
@@ -1578,6 +1588,34 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "openPage", LuaUtils.openPage);
 
 		Lua_helper.add_callback(lua, "windowName", LuaUtils.windowName);
+
+		Lua_helper.add_callback(lua, "getWindowX", LuaUtils.getWindowX);
+
+		Lua_helper.add_callback(lua, "getWindowY", LuaUtils.getWindowY);
+
+		Lua_helper.add_callback(lua, "setWindowPos", LuaUtils.setWindowPos);
+		
+		Lua_helper.add_callback(lua, "resizeWindow", LuaUtils.resizeWindow);
+
+		Lua_helper.add_callback(lua, "getScreenWidth", LuaUtils.getScreenWidth);
+
+		Lua_helper.add_callback(lua, "getScreenHeight", LuaUtils.getScreenHeight);
+
+		Lua_helper.add_callback(lua, "getWindowWidth", LuaUtils.getWindowWidth);
+
+		Lua_helper.add_callback(lua, "getWindowHeight", LuaUtils.getWindowHeight);
+
+		Lua_helper.add_callback(lua, "windowBorderless", LuaUtils.windowBorderless);
+
+		Lua_helper.add_callback(lua, "windowRestoreBorders", LuaUtils.windowRestoreBorders);
+
+		//Lua_helper.add_callback(lua, "changeWallPaper", LuaUtils.changeWallPaper);
+		
+		//Lua_helper.add_callback(lua, "revertWallPaper", LuaUtils.revertWallPaper);
+
+		Lua_helper.add_callback(lua, "hideWindows", LuaUtils.hideWindows);
+
+		Lua_helper.add_callback(lua, "restoreWindows", LuaUtils.restoreWindows);
 
 
 		#if FLX_PITCH

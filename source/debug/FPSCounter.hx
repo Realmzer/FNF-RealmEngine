@@ -4,7 +4,9 @@ import flixel.FlxG;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.system.System;
-
+import backend.macros.GitCommit;
+import backend.macros.MacroUtils;
+import backend.ClientPrefs;
 /**
 	The FPS class provides an easy-to-use monitor to display
 	the current frame rate of an OpenFL project
@@ -62,8 +64,31 @@ class FPSCounter extends TextField
 	}
 
 	public dynamic function updateText():Void { // so people can override it in hscript
-		text = 'FPS: ${currentFPS}'
-		+ '\nMemory: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}';
+		text = 'FPS: ${currentFPS}';
+		text += '\nMemory: ${flixel.util.FlxStringUtil.formatBytes(memoryMegas)}';
+		//text += '\nTime: ${MacroUtils.getDate()}';
+		//+ '\nCurrent Commit: ${GitCommit.getGitCommitHash()}'
+	//	+ (ClientPrefs.data.showGitInfo  '\nCurrent Commit: ${GitCommit.getGitCommitHash()}');
+		if (ClientPrefs.data.showGitCommitInfo) {
+			text +=	'\nCurrent Commit: ${GitCommit.getGitCommitHash()}';
+			//text +=	'\nCurrent Branch: ${GitCommit.getGitBranch()}';
+			//text += '\nLocal Changes:  ${GitCommit.getGitHasLocalChanges()}';
+		}
+
+		if (ClientPrefs.data.showGitBranchInfo) {
+			text +=	'\nCurrent Branch: ${GitCommit.getGitBranch()}';
+		}
+
+		//if (ClientPrefs.data.showGitLocalInfo) {
+	//		text += '\nLocal Changes:  ${GitCommit.getGitHasLocalChanges()}';
+	//	}
+
+		if (ClientPrefs.data.debugInfo) {
+			text += '\nState: ${Type.getClassName(Type.getClass(FlxG.state))}';
+			if (FlxG.state.subState != null)
+				text += '\nSubstate: ${Type.getClassName(Type.getClass(FlxG.state.subState))}';
+			text += "\nSystem: " + '${lime.system.System.platformLabel} ${lime.system.System.platformVersion}';
+		}
 	//if(ClientPrefs.data.debugInfo)
 	//	{
 	//	+ '\nOperating System: ${Sys.systemName()}';

@@ -122,10 +122,28 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.onChange = onChangeFPSCounter;
 		
 		var option:Option = new Option('Debug Info',
-		'If checked, shows debug info on the FPS counter.',
+		'If checked, shows debug info on the FPS counter.\n Includes current operating system, current state, and current substate',
 		'debugInfo',
 		'bool');
-		//addOption(option);
+		addOption(option);
+		
+		var option:Option = new Option('Commit Info',
+		'If checked, shows commit info on the FPS Counter.',
+		'showGitCommitInfo',
+		'bool');
+		addOption(option);
+		
+		var option:Option = new Option('Branch Info',
+		'If checked, shows branch info on the FPS Counter.',
+		'showGitBranchInfo',
+		'bool');
+		addOption(option);
+		
+		var option:Option = new Option('Local Changes Info',
+		'If checked, shows Local Changes info on the FPS Counter.',
+		'showGitLocalInfo',
+		'bool');
+	//	addOption(option);
 		#end
 		
 		var option:Option = new Option('Pause Screen Song:',
@@ -163,7 +181,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		"If unchecked, the window will be in light mode instead of dark mode. \n Please note that this only works on windows.",
 		'darkMode',
 		'bool');
-		//addOption(option);
+		//	addOption(option);
         #end
 
 		var option:Option = new Option('Realm Style Title Screen',

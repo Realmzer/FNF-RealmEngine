@@ -276,6 +276,7 @@ class PlayState extends MusicBeatState
 		//trace('Playback Rate: ' + playbackRate);
 		inline cpp.vm.Gc.enable(ClientPrefs.data.enableGC); //From JSE
 		inline Paths.clearStoredMemory();
+		
 
 		startCallback = startCountdown;
 		endCallback = endSong;

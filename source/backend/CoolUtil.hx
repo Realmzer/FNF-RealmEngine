@@ -10,6 +10,8 @@ import openfl.Lib;
 
 class CoolUtil
 {
+	public static final haxeExtensions:Array<String> = ["hx", "hscript", "hsc", "hxs"];
+
 	inline public static function quantize(f:Float, snap:Float){
 		// changed so this actually works lol
 		var m:Float = Math.fround(f * snap);
@@ -36,6 +38,50 @@ class CoolUtil
 		'hycam2', 
 		'twitchstudio'
 	];
+
+	public static function updateTheEngine():Void {
+		// Get the directory of the executable
+		var exePath = Sys.programPath();
+		var exeDir = haxe.io.Path.directory(exePath);
+
+		// Construct the source directory path based on the executable location
+		var sourceDirectory = haxe.io.Path.join([exeDir, "update", "raw"]);
+		var sourceDirectory2 = haxe.io.Path.join([exeDir, "update"]);
+
+		// Escape backslashes for use in the batch script
+		sourceDirectory = sourceDirectory.split('\\').join('\\\\');
+
+		var excludeFolder = "mods";
+
+		// Construct the batch script with echo statements
+		var theBatch = "@echo off\r\n";
+		theBatch += "setlocal enabledelayedexpansion\r\n";
+		theBatch += "set \"sourceDirectory=" + sourceDirectory + "\"\r\n";
+		theBatch += "set \"sourceDirectory2=" + sourceDirectory2 + "\"\r\n";
+		theBatch += "set \"destinationDirectory=" + exeDir + "\"\r\n";
+		theBatch += "set \"excludeFolder=mods\"\r\n";
+		theBatch += "if not exist \"!sourceDirectory!\" (\r\n";
+		theBatch += "  echo Source directory does not exist: !sourceDirectory!\r\n";
+		theBatch += "  pause\r\n";
+		theBatch += "  exit /b\r\n";
+		theBatch += ")\r\n";
+		theBatch += "taskkill /F /IM RealmEngine.exe\r\n";
+		theBatch += "cd /d \"%~dp0\"\r\n";
+		theBatch += "xcopy /e /y \"!sourceDirectory!\" \"!destinationDirectory!\"\r\n";
+		theBatch += "rd /s /q \"!sourceDirectory!\"\r\n";
+		theBatch += "start /d \"!destinationDirectory!\" RealmEngine.exe\r\n";
+		theBatch += "rd /s /q \"%~dp0\\update\"\r\n";
+		theBatch += "del \"%~f0\"\r\n";
+		theBatch += "endlocal\r\n";
+
+		// Save the batch file in the executable's directory
+		File.saveContent(haxe.io.Path.join([exeDir, "update.bat"]), theBatch);
+
+		// Execute the batch file
+				new Process(exeDir + "/update.bat", []);
+		Sys.exit(0);
+	}
+
 
 	public static function getFPSCap():Int
 		{
@@ -117,10 +163,23 @@ class CoolUtil
 			#end
 		}
 
+
+		public static function executableFileName()
+			{
+				#if windows
+				var programPath = Sys.programPath().split("\\");
+				#else
+				var programPath = Sys.programPath().split("/");
+				#end
+				return programPath[programPath.length - 1];
+			}
+
 	public static function getOS()
 		{
 			return Sys.systemName();
 		}
+
+		
 	
 
 	public static function checkForOBS():Bool
@@ -229,6 +288,9 @@ class CoolUtil
 
 	inline public static function capitalize(text:String)
 		return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
+
+	inline public static function curveNumber(input:Float = 1, ?curve:Float = 10):Float
+		return Math.sqrt(input) * curve;
 
 	inline public static function coolTextFile(path:String):Array<String>
 	{
@@ -383,6 +445,31 @@ class CoolUtil
 		return Math.max(min, Math.min(max, value));
 	}
 
+ /**
+   * Add several zeros at the beginning of a string, so that `2` becomes `02`.
+   * @param str String to add zeros
+   * @param num The length required
+   */
+   public static inline function addZeros(str:String, num:Int)
+	{
+	  while (str.length < num)
+		str = '0${str}';
+	  return str;
+	}
+  
+	/**
+	 * Add several zeros at the end of a string, so that `2` becomes `20`, useful for ms.
+	 * @param str String to add zeros
+	 * @param num The length required
+	 */
+	public static inline function addEndZeros(str:String, num:Int)
+	{
+	  while (str.length < num)
+		str = '${str}0';
+	  return str;
+	}
+  
+
 	inline public static function browserLoad(site:String) {
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);
@@ -519,6 +606,44 @@ class CoolUtil
 				text.borderStyle = NONE;
 		}
 	}
+
+	public static function returnColor(?str:String = ''):FlxColor
+		{
+		  switch (str.toLowerCase())
+		  {
+			case "black":
+			  return FlxColor.BLACK;
+			case "white":
+			  return FlxColor.WHITE;
+			case "blue":
+			  return FlxColor.BLUE;
+			case "brown":
+			  return FlxColor.BROWN;
+			case "cyan":
+			  return FlxColor.CYAN;
+			case "yellow":
+			  return FlxColor.YELLOW;
+			case "gray":
+			  return FlxColor.GRAY;
+			case "green":
+			  return FlxColor.GREEN;
+			case "lime":
+			  return FlxColor.LIME;
+			case "magenta":
+			  return FlxColor.MAGENTA;
+			case "orange":
+			  return FlxColor.ORANGE;
+			case "pink":
+			  return FlxColor.PINK;
+			case "purple":
+			  return FlxColor.PURPLE;
+			case "red":
+			  return FlxColor.RED;
+			case "transparent" | 'trans':
+			  return FlxColor.TRANSPARENT;
+		  }
+		  return FlxColor.WHITE;
+		}
 
 	public static inline function exactSetGraphicSize(obj:Dynamic, width:Float, height:Float) // ACTULLY WORKS LMAO -lunar
 		{

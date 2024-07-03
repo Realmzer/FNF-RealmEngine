@@ -199,6 +199,42 @@ class LuaUtils
 		trace(text);
 	}
 
+	public static function printScore(curSong:String):Void {
+		var songScore = PlayState.instance.songScore;
+		trace("Score: " + songScore);
+	}
+
+	public static function printMisses(curSong:String):Void {
+		var misses = PlayState.instance.songMisses;
+		trace("Misses: " + misses);
+	}
+
+	public static function printRating(curSong:String):Void {
+		var rating = PlayState.instance.ratingName;
+		trace("Rating: " + rating);
+	}
+
+	public static function printFcCheck(curSong:String):Void {
+		var isFullCombo = PlayState.instance.ratingFC;
+		var isFC = false;
+		if (PlayState.instance.ratingFC == 'FC') {
+			isFC = true;
+		} else if (PlayState.instance.ratingFC == 'GFC') {
+			isFC = true;  
+		} else if (PlayState.instance.ratingFC == 'SFC') {
+			isFC = true;
+		} else {
+			isFC = false;
+		}
+	
+		trace("Is FC?: " + isFC);
+	}
+
+	public static function printHealth(curSong:String):Void {
+		var currentHealth = PlayState.instance.health;
+		trace("Health:" + currentHealth);
+	}
+
 	public static function getSongInfo(curSong:String):Void {
 		trace(StringTools.trim(PlayState.SONG.song) + " - " + StringTools.trim(Difficulty.getString()) + ", Duration: " + FlxG.sound.music.length);
 	}
@@ -243,6 +279,66 @@ class LuaUtils
 		{
 		Lib.application.window.title = title; // Providing an easier way to rename the window in lua
 		}
+
+		public static function setWindowPos(x:Int = 0, y:Int = 0) {
+			Application.current.window.x = x;
+			Application.current.window.y = y;
+		}
+
+		public static function getWindowX() {
+			return Application.current.window.x;
+		}
+
+		public static function getWindowY() {
+			return Application.current.window.y;
+		}
+	
+		public static function resizeWindow(Width:Int, Height:Int) {
+			Application.current.window.resize(Width,Height);
+		}
+
+		public static function getScreenWidth() {
+			return Application.current.window.display.currentMode.width;
+		}
+		
+		public static function getScreenHeight() {
+			return Application.current.window.display.currentMode.height;
+		}
+
+		public static function getWindowWidth() {
+			return Application.current.window.width;
+		}
+
+		public static function getWindowHeight() {
+			return Application.current.window.height;
+		}
+
+	//	public static function changeWallPaper(image:String = null) {
+	//		var leSprite:ModchartSprite = new ModchartSprite(x, y);
+	//		CppAPI.setWallpaper(leSprite.loadGraphic(Paths.image(image)););
+	//	}
+
+	//	public static function revertWallPaper() {
+	//		CppAPI.setOld();
+	//	}
+
+		public static function hideWindows() {
+			CppAPI.hideWindows();
+		}
+
+		public static function restoreWindows() {
+			CppAPI.restoreWindows();
+		}
+
+		public static function windowBorderless() {
+			Lib.application.window.borderless = true;
+		}
+
+		public static function windowRestoreBorders() {
+			Lib.application.window.borderless = false;
+		}
+
+		
 
 	
 

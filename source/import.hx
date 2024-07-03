@@ -47,6 +47,8 @@ import flxanimate.*;
 import backend.EtternaFunctions;
 
 //Utils
+import lime.app.Application;
+import openfl.Lib;
 
 //CPP Utils
 import cpputils.CppAPI;
@@ -54,9 +56,6 @@ import cpputils.Transparency;
 import cpputils.Wallpaper;
 import cpputils.WindowsData;
 import cpputils.WindowsSystem;
-
-//System Utils
-import sysutils.SystemFetching;
 
 //Flixel
 import flixel.sound.FlxSound;
@@ -70,8 +69,10 @@ import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.tweens.misc.NumTween;
 import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.system.scaleModes.BaseScaleMode;
 
 using StringTools;
 #end
